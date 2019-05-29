@@ -9,7 +9,7 @@ module.exports.allergies = (req, res) => {
         // API for allergies GET
         var ptId = req.query.ptId
 
-        db.json_get(config.db_keys.allergies, `._${ptId}`, function (err, data) {
+        db.json_get(`${config.db_keys.allergies}_${ptId}`, `.`, function (err, data) {
             if (err) { throw err; }
             res.json(JSON.parse(data));
         });
@@ -19,7 +19,7 @@ module.exports.allergies = (req, res) => {
         var ptId = req.body.ptId
         var data = req.body.data
 
-        db.json_set(config.db_keys.allergies, '.', JSON.stringify({[`_${ptId}`] : data}), function (err) {
+        db.json_set(`${config.db_keys.allergies}_${ptId}`, '.', JSON.stringify(data), function (err) {
             if (err) {
                 throw err;
             }
@@ -36,7 +36,7 @@ module.exports.medicians = (req, res) => {
         // API for medicians GET
         var ptId = req.query.ptId
 
-        db.json_get(config.db_keys.medicians, `._${ptId}`, function (err, data) {
+        db.json_get(`${config.db_keys.medicians}_${ptId}`, `.`, function (err, data) {
             if (err) { throw err; }
             res.json(JSON.parse(data));
         });
@@ -46,7 +46,7 @@ module.exports.medicians = (req, res) => {
         var ptId = req.body.ptId
         var data = req.body.data
 
-        db.json_set(config.db_keys.medicians, '.', JSON.stringify({[`_${ptId}`] : data}), function (err) {
+        db.json_set(`${config.db_keys.medicians}_${ptId}`, '.', JSON.stringify(data), function (err) {
             if (err) {
                 throw err;
             }
@@ -63,7 +63,7 @@ module.exports.problems = (req, res) => {
         // API for problems GET
         var ptId = req.query.ptId
 
-        db.json_get(config.db_keys.problems, `._${ptId}`, function (err, data) {
+        db.json_get(`${config.db_keys.problems}_${ptId}`, `.`, function (err, data) {
             if (err) { throw err; }
             res.json(JSON.parse(data));
         });
@@ -73,7 +73,7 @@ module.exports.problems = (req, res) => {
         var ptId = req.body.ptId
         var data = req.body.data
 
-        db.json_set(config.db_keys.problems, '.', JSON.stringify({[`_${ptId}`] : data}), function (err) {
+        db.json_set(`${config.db_keys.problems}_${ptId}`, '.', JSON.stringify(data), function (err) {
             if (err) {
                 throw err;
             }

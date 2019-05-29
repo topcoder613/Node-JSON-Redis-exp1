@@ -1,0 +1,15 @@
+{
+    "author": "c4h_ripple_osi",
+    "dateCreated": 1446482102197,
+    "doseAmount": "1000mg",
+    "doseDirections": "Orally",
+    "doseTiming": "Orally Daily",
+    "medicationCode": "DefaultCode",
+    "medicationTerminology": "SNOMED-CT",
+    "name": "Amoxicillin",
+    "route": "RouteValue",
+    "source": "Marand",
+    "sourceId": "ba75d477-5ad4-4ad6-b126-94bd2324c101",
+    "startDate": 1448629200000,
+    "startTime": 46800000
+}

@@ -1,0 +1,13 @@
+{
+    "author": "Dr George Shannon",
+    "cause": "allergy to penicillin",
+    "causeCode": "SNOMED-CT",
+    "causeTerminology": 91936005,
+    "dateCreated": 1482178262000,
+    "originalComposition": "",
+    "originalSource": "",
+    "reaction": "eruption due to drug",
+    "source": "ethercis",
+    "sourceId": "74d1e386-5c2e-404c-bf65-29e3344285ef",
+    "terminologyCode": "SNOMED-CT"
+}

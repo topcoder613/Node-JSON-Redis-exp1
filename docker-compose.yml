@@ -1,0 +1,40 @@
+version: "2"
+services:
+  # redisdb:
+  #   image: redislabs/rejson:latest
+  #   restart: always
+  #   container_name: redisdb
+  #   ports:
+  #     - "6379:6379"
+  app:
+    image: toptal3/json2redis:first
+    restart: always
+    ports:
+      - 3000:3000
+    working_dir: /usr/src/app
+    command:
+      sh -c 'node app.js'
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://cache
+      - PORT=3000
+    networks:
+      - redis-net
+    depends_on:
+      - redis
+  redis:
+    image: redislabs/rejson:latest
+    command: ["redis-server", "--appendonly", "yes", "--loadmodule", "/usr/lib/redis/modules/rejson.so"]
+    hostname: redis
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+    expose:
+      - 6379
+    container_name: cache
+networks:
+  redis-net:
+
+volumes:
+  redis-data:

@@ -1,15 +1,13 @@
 var db = require("../db");
 var config = require("../config");
 
-// API for allergies
-module.exports.allergies = (req, res) => {
-        
+callAPI = (atype, req, res) => {
     if (req.method === "GET") {
 
-        // API for allergies GET
+        // API for ATYPE GET
         var ptId = req.query.ptId
 
-        db.json_get(config.db_keys.allergies + "_" + ptId, ".", function (err, data) {
+        db.json_get(config.db_keys[atype] + "_" + ptId, ".", function (err, data) {
             if (err) { throw err; }
             res.json(JSON.parse(data));
         });
@@ -19,65 +17,26 @@ module.exports.allergies = (req, res) => {
         var ptId = req.body.ptId
         var data = req.body.data
 
-        db.json_set(`${config.db_keys.allergies}_${ptId}`, '.', JSON.stringify(data), function (err) {
+        db.json_set(config.db_keys[atype] + "_" + ptId, ".", JSON.stringify(data), function (err) {
             if (err) {
                 throw err;
             }
             res.json({'success': "True"})
         });
     }
+};
+
+// API for allergies
+module.exports.allergies = (req, res) => {
+    callAPI('allergies', req, res);
 }
 
 // API for medicians
 module.exports.medicians = (req, res) => {
-    
-    if (req.method === "GET") {
-
-        // API for medicians GET
-        var ptId = req.query.ptId
-
-        db.json_get(config.db_keys.medicians + "_" + ptId, ".", function (err, data) {
-            if (err) { throw err; }
-            res.json(JSON.parse(data));
-        });
-    } else if (req.method === "POST") {
-
-        // API for medicians POST
-        var ptId = req.body.ptId
-        var data = req.body.data
-
-        db.json_set(config.db_keys.medicians + "_" + ptId, ".", JSON.stringify(data), function (err) {
-            if (err) {
-                throw err;
-            }
-            res.json({'success': "True"})
-        });
-    }
+    callAPI('medicians', req, res);
 }
 
 // API for problems
 module.exports.problems = (req, res) => {
-    
-    if (req.method === "GET") {
-
-        // API for problems GET
-        var ptId = req.query.ptId
-
-        db.json_get(config.db_keys.problems + "_" + ptId, ".", function (err, data) {
-            if (err) { throw err; }
-            res.json(JSON.parse(data));
-        });
-    } else if (req.method === "POST") {
-
-        // API for problems POST
-        var ptId = req.body.ptId
-        var data = req.body.data
-
-        db.json_set(config.db_keys.problems + "_" + ptId, ".", JSON.stringify(data), function (err) {
-            if (err) {
-                throw err;
-            }
-            res.json({'success': "True"})
-        });
-    }
+    callAPI('problems', req, res);
 }
